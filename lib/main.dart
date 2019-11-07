@@ -18,16 +18,34 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.blue[600]
       ),
       body: Center(
-          child: Text(
-            'Hello there friends!',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 2.0,
-              color: Colors.black,
-              fontFamily: 'YeonSung',
-            ),
-          )
+        child: IconButton(
+            onPressed: () {
+              print('you clicked me');
+            },
+            icon: Icon(Icons.alternate_email),
+      ),
+
+//        child: RaisedButton.icon(
+//            onPressed: () {},
+//            icon: Icon(
+//              Icons.mail
+//            ),
+//            label: Text('mail me'),
+//            color: Colors.amber,
+//        ),
+//        child: FlatButton(
+//          onPressed: () {
+//            //code executed when pressed
+//            print('you clicked me');
+//          },
+//          child: Text('Click me'),
+//          color: Colors.lightBlue,
+//            ),
+//        child: Icon(
+//          Icons.airport_shuttle,
+//          color: Colors.lightBlue,
+//          size: 50,
+//        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
