@@ -18,16 +18,23 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.blue[600]
       ),
       body: Center(
-          child: Text(
-            'Hello there friends!',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 2.0,
-              color: Colors.black,
-              fontFamily: 'YeonSung',
+        child: Column(
+          children: <Widget>[
+            Text(
+              'There\'s more than meets the eye!',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 2.0,
+                color: Colors.black,
+                fontFamily: 'YeonSung',
+              ),
             ),
-          )
+            Image(
+                image: NetworkImage('https://images.unsplash.com/photo-1571757767119-68b8dbed8c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
+            ),
+          ],
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
