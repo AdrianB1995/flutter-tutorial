@@ -8,7 +8,15 @@ void main() => runApp(MaterialApp(
 that is extending the StatelessWidget class*/
 // Stateless widgets cannot change over time.
 // Stateful widget can change over time.
-class IdCard extends StatelessWidget {
+class IdCard extends StatefulWidget {
+  @override
+  _IdCardState createState() => _IdCardState();
+}
+
+class _IdCardState extends State<IdCard> {
+
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +69,7 @@ class IdCard extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              '99',
+              '$ninjaLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -91,11 +99,16 @@ class IdCard extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text('Click'),
-        backgroundColor: Colors.blue[600],
+        onPressed: () {
+          setState(() {
+            ninjaLevel++;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
     );
   }
 }
+
 
