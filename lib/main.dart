@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/Home.dart';
+import 'package:flutter_app/pages/Loading.dart';
+import 'package:flutter_app/pages/Location.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home()
+  initialRoute: '/home',
+  routes: {
+    '/': (context) => LoadingScreen(),
+    '/home': (context) => Home(),
+    '/location': (context) => ChooseLocation()
+  },
 ));
-
-/*The code below essentially means that we are creating our own widget class
-that is extending the StatelessWidget class*/
-// Stateless widgets cannot change over time.
-// Stateful widget can change over time.
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text('Hello World'),
-          centerTitle: true,
-          backgroundColor: Colors.blue[600]
-      ),
-      body: Center(
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Text('Click'),
-        backgroundColor: Colors.blue[600],
-      ),
-    );
-  }
-}
-
