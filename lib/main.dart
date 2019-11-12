@@ -1,114 +1,35 @@
 import 'package:flutter/material.dart';
+import 'Quote.dart';
 
 void main() => runApp(MaterialApp(
-  home: IdCard()
+  home: QuoteList(),
 ));
 
-/*The code below essentially means that we are creating our own widget class
-that is extending the StatelessWidget class*/
-// Stateless widgets cannot change over time.
-// Stateful widget can change over time.
-class IdCard extends StatefulWidget {
+class QuoteList extends StatefulWidget {
   @override
-  _IdCardState createState() => _IdCardState();
+  _QuoteListState createState() => _QuoteListState();
 }
 
-class _IdCardState extends State<IdCard> {
+class _QuoteListState extends State<QuoteList> {
 
-  int ninjaLevel = 0;
+  List<Quote> list = [
+    Quote(author: 'Adrian Borrego', text: 'You only get one chance in life!'),
+    Quote(author: 'Adrian Borrego', text: 'Never stop pushing for a better future!'),
+    Quote(author: 'Adrian Borrego', text: 'Never forget where you came from!'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Personal ID Card'),
+        title: Text('Awesome Quotes'),
         centerTitle: true,
-        backgroundColor: Colors.grey[850],
-        elevation: 0.0,
+        backgroundColor: Colors.redAccent,
       ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/black-spiderman.jpg'),
-                radius: 40.0,
-              ),
-            ),
-            Divider(
-              height: 90.0,
-              color: Colors.grey[800],
-            ),
-            Text(
-              'NAME',
-              style: TextStyle(
-                color: Colors.grey,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              'Adrian-Borrego',
-              style: TextStyle(
-                  color: Colors.amberAccent[200],
-                  letterSpacing: 2.0,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Text(
-              'CURRENT LEVEL',
-              style: TextStyle(
-                color: Colors.grey,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              '$ninjaLevel',
-              style: TextStyle(
-                  color: Colors.amberAccent[200],
-                  letterSpacing: 2.0,
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.bold
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.email,
-                  color: Colors.grey[400],
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                 'adrian-ninja@us.com',
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 18.0,
-                    letterSpacing: 1.0
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            ninjaLevel++;
-          });
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.grey[800],
+      body: Column(
+        children: list.map((quote) => Text('${quote.text} - ${quote.author}')).toList(),
       ),
     );
   }
 }
-
-
