@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:flutter_app/services/WorldTime.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -9,40 +8,31 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
 
-  void getTime() async {
-    Response timeResponse = await get('http://worldtimeapi.org/api/timezone/America/New_York');
-    Map time = jsonDecode(timeResponse.body);
-    //print(time);
+  String time = 'loading';
 
-    //Get properties from json object
-    String dateTime = time['datetime'];
-    String utcOffset = time['utc_offset'].substring(1,3);
-    String operation = time['utc_offset'].substring(0,1);
-    print(dateTime);
-    print(utcOffset);
-    print(operation);
-
-    //create DateTime object
-    DateTime now = DateTime.parse(dateTime);
-    if(operation.startsWith('-')){
-      now = now.subtract(Duration(hours: int.parse(utcOffset)));
-    }else {
-      now = now.add(Duration(hours: int.parse(utcOffset)));
-    }
-    print(now);
+  void setupWorldTime() async {
+    WorldTime worldTime = WorldTime(location: 'America', flagURL: 'america.png', url: 'America/New_York');
+    await worldTime.getTime();
+    print(worldTime.localTime);
+    setState(() {
+      time = worldTime.localTime;
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    getTime();
+    setupWorldTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text(
-        'loading screen'
+      body: Padding(
+        padding: EdgeInsets.all(50.0),
+        child: Text(
+          time
+        ),
       ),
     );
   }
