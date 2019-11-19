@@ -1,14 +1,16 @@
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'dart:convert';
 
 class WorldTime {
 
   String location;   // Location name of UI
   String localTime; // Time in that location
-  String flagURL; // URL to an asset flag image
+  String flag; // URL to an asset flag image
   String url; // URL for world time API
+  bool isDayTime; // boolean to determine if it is day or night
 
-  WorldTime({ this.location, this.flagURL, this.url });
+  WorldTime({ this.url, this.location, this.flag });
 
   Future<void> getTime() async {
 
@@ -27,6 +29,7 @@ class WorldTime {
     }else {
       now = now.add(Duration(hours: int.parse(utcOffset)));
     }
-    localTime = now.toString();
+    isDayTime = now.hour > 6 && now.hour < 20 ? true : false;
+    localTime = DateFormat.jm().format(now);
   }
 }
